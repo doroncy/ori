@@ -1,0 +1,97 @@
+<div class="admin-page-wrapper">
+	<div class="row border-bottom">
+		<nav class="navbar navbar-static-top" role="navigation">
+			<div class="container">
+				<div class="navbar-headers">
+					<div class="col-xs-2">
+						<img alt="Brand" class="img-responsive pull-left ori-logo-sm" src="/assets/images/ori-logo-blank.png">
+					</div>
+					<div class="col-xs-10">
+						<ul class="nav navbar-top-links navbar-right no-padding">
+							<li>
+								<a ng-click="logout()">
+									<i class="fa fa-sign-out"></i> התנתק
+								</a>
+							</li>
+							<li>
+								<a ui-sref="admin">הדש-בורד</a>
+							</li>
+							<li>
+								<a ui-sref="users" class="bg-active">לקוחות</a>
+							</li>
+							<div class="clearfix"></div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="row wrapper border-bottom page-heading">
+		<div class="container">
+			<h2 class="header pull-right">הלקוחות</h2>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="wrapper-content">
+					<div class="box">
+						<div class="box-title">
+							<h5>רשימת המשרדים</h5>
+						</div>
+						<div class="box-content forum-container">
+							<p><i class="fa fa-warning"></i> חשוב מאוד, הפרד כל שם משרד בפסיק</p>
+							<textarea ng-model="offices.names" class="form-control" wrap="hard" rows="3"></textarea>
+
+							<div class="box-content-footer text-left">
+								<button class="btn btn-primary" ng-click="updateOffices()">עדכן</button>
+							</div>
+
+							<div class="alert"
+								 ng-class="{'alert-success': !msg.isError, 'alert-danger': msg.isError}"
+								 ng-if="msg.isVisible">
+								<br />
+								<p>{{msg.text}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<div class="wrapper-content">
+					<div class="box">
+						<div class="box-title">
+							<h5>רשימת הלקוחות</h5>
+						</div>
+						<div class="box-content forum-container">
+							<div class="table-responsive">
+								<table class="table table-striped table-hover">
+									<thead>
+									<tr>
+										<th>שם</th>
+										<th>משרד</th>
+										<th>טלפון</th>
+										<th>מייל</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr ng-repeat="user in users">
+										<td>{{::user.name || ''}}</td>
+										<td>{{::user.office || ''}}</td>
+										<td>{{::user.phone || ''}}</td>
+										<td><a ng-href="mailto:{{::user.email || ''}}">{{::user.email || ''}}</a></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

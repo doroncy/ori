@@ -1,0 +1,32 @@
+<form class="item-form" role="form" dir="rtl">
+	<div class="form-group">
+		<label>שם</label>
+		<input type="text" class="form-control" ng-model="options.item.name" />
+	</div>
+	<div class="form-group">
+		<label>תיאור קצר</label>
+		<textarea class="form-control" rows="3" ng-model="options.item.description"></textarea>
+	</div>
+	<div class="row" dir="rtl">
+		<div class="col-sm-4">
+			<div class="checkbox">
+				<label>
+					אקטיבי
+				</label>
+				<input type="checkbox" ng-model="options.item.active">
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label>כמות</label>
+				<input type="text" class="form-control" ng-model="options.item.amount">
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="form-group">
+				<label>מחיר</label>
+				<input type="text" class="form-control" ng-model="options.item.price">
+			</div>
+		</div>
+	</div>
+</form>

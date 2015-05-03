@@ -1,0 +1,23 @@
+<img alt="Brand" class="img-responsive center-block ori-logo-sm logo-login" src="/assets/images/ori-logo-blank.png">
+
+<div class="col-xs-8 col-xs-offset-2"><h3 class="login-title">הכנס</h3>
+	<form role="form">
+		<div class="form-group">
+			<label>דוא״ל:</label>
+			<input type="email" placeholder="דוא״ל" class="form-control" ng-model="user.email">
+		</div>
+		<div class="form-group">
+			<label>סיסמה:</label>
+			<input type="password" placeholder="סיסמה" class="form-control" ng-model="user.password">
+		</div>
+		<div>
+			<div class="alert"
+				 ng-class="{'alert-success': !msg.isError, 'alert-danger': msg.isError}"
+				 ng-if="msg.isVisible">
+				{{msg.text}}
+			</div>
+
+			<button class="btn order-items-btn pull-left" type="submit" ng-click="login()"><strong>הכנס</strong></button>
+		</div>
+	</form>
+</div>

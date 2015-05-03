@@ -1,0 +1,195 @@
+$main-bg-color: #2AB642;
+$main-darker-10-color: darken($main-bg-color, 10%);
+$main-darker-12-color: darken($main-bg-color, 12%);
+$selected-color: #F50062;
+
+.main-wrap {
+  background-color: $main-bg-color;
+  width: 100%;
+  height: inherit;
+  color:#fff !important;
+  padding-bottom: 15px;
+}
+
+.ori-logo-fixed {
+  height: 200px;
+  padding-top:30px;
+}
+
+.ori-big-logo {
+
+  position: absolute;
+  max-width: 80%;
+  top: 10%;
+  left: 10%;
+
+  &:empty {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+
+  &.shrink {
+    max-height: 200px;
+  }
+}
+
+.main-content {
+ margin-top: 30px;
+}
+
+.main-item-wrap {
+  background-color: $main-darker-10-color;
+  border:none;
+
+  .forum-item {
+   border-bottom: 1px solid $main-darker-12-color;
+    padding: 10px 0;
+    color:#f6f6f6;
+
+    .fa-shekel {
+      font-size: 0.7em;
+    }
+  }
+
+  .forum-item-lg-title {
+    font-size:2.2em;
+    line-height: 1.1;
+    .fa {
+      font-size:13px;
+    }
+  }
+  .forum-item-sub-title {
+    font-size:1.1em;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .forum-item-sub-title {
+    font-size:0.9em;
+    line-height: 1;
+    color: #ccc;
+  }
+}
+.item-left-wrap {
+  padding-right: 15px;
+  margin-right: 10px;
+  border-right: 1px solid $main-darker-12-color;
+}
+.order-wrap {
+  h3 {
+    color: #fff;
+    margin-top: 0;
+  }
+  .forum-container {
+    padding-top: 20px;
+  }
+  .item-qty-wrap {
+    margin-right: 10px;
+    border-right: 1px solid $main-darker-12-color;
+  }
+  .order-item-qty-wrap {
+
+    .qty-btn {
+     font-size:1.4em;
+      padding:10px 10px;
+      color:#fff;
+      cursor: pointer;
+      font-weight: normal;
+      &:hover {
+        font-weight: bold;
+        color: $selected-color;
+      }
+      &:first-child {
+        padding-right:0;
+      }
+    }
+    .qty-amount {
+      font-size:2.2em;
+    }
+  }
+}
+
+.order-items-btn-wrap {
+  padding:15px 15px 0;
+  .order-items-btn {
+    width: 200px;
+  }
+}
+.order-items-btn {
+  color: #484848;
+  &:hover {
+    background-color: $selected-color;
+    color:#fff;
+  }
+}
+
+table th {
+ text-align: right;
+}
+
+.active, .hover-active:hover, .hover-active:hover .fa  {
+  color: $selected-color;
+}
+
+.btn-blank {
+  border:none;
+  opacity:0.7;
+  outline: none;
+  background-color: transparent;
+  &:hover, &:active, &:focus {
+    border:none;
+    outline: none !important;
+    box-shadow: none;
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  height: 50px;
+}
+.no-padding {
+  padding: 0;
+}
+.ori-logo-sm {
+  min-height: 68px;
+  min-width: 90px;
+}
+
+.b-r-dark {
+  border-right: 1px solid $main-darker-12-color;
+}
+
+.big-icon {
+  font-size: 160px;
+  color: #e5e6e7;
+}
+.display-block{
+  display: block;
+}
+.full-height {
+  height:100%;
+}
+.cur-user {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+
+.link-btn {
+  color:$main-darker-10-color;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+@media only screen and (max-width : 480px) {
+  .order-item-qty-wrap {
+    font-size:0.7em;
+  }
+}

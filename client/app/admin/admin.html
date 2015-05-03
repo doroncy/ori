@@ -1,0 +1,122 @@
+<div class="admin-page-wrapper">
+    <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-headers">
+                    <div class="col-xs-2">
+                        <img alt="Brand" class="img-responsive pull-left ori-logo-sm" src="/assets/images/ori-logo-blank.png">
+                    </div>
+                    <div class="col-xs-10">
+                        <ul class="nav navbar-top-links navbar-right no-padding">
+                            <li>
+                                <a class="link-btn" ng-click="logout()">
+                                    <i class="fa fa-sign-out"></i> התנתק
+                                </a>
+                            </li>
+                            <li>
+                                <a ui-sref="admin" class="bg-active">הדש-בורד</a>
+                            </li>
+                            <li>
+                                <a ui-sref="users">לקוחות</a>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="row wrapper border-bottom page-heading">
+        <div class="container">
+            <h2 class="header pull-right">הדש בורד.</h2>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="wrapper-content">
+                    <div class="box">
+                        <div class="box-title">
+                            <h5>הזמנות</h5>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="box-content forum-container">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover orders-list">
+                                    <thead>
+                                    <tr>
+                                        <th>משרד</th>
+                                        <th>שם</th>
+                                        <th>הזמנה</th>
+                                        <th>סכום</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="order in orders.list"
+                                        ng-click="toggleAsDelivered(order)"
+                                        ng-class="{'success': order.status=='delivered'}"
+                                            >
+                                        <td>{{::order.user.office || ''}}</td>
+                                        <td>{{::order.user.name || ''}}<br/>{{::order.user.phone || ''}}</td>
+                                        <td>
+                                            <p class="order-info" ng-repeat="orderItem in order.items">
+                                                {{::orderItem.quantity}} x {{::orderItem.name}}
+                                            </p>
+                                        </td>
+                                        <td>{{::order.totalPrice}}&nbsp;<i class="fa fa-shekel fa-sm"></i></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="wrapper-content">
+                    <div class="box">
+                        <div class="box-title">
+                            <h5>מוצרים</h5>
+                            <div class="btn-group pull-left" role="group">
+                                <button type="button" class="btn btn-blank" ng-click="openItemForm()"><i class="fa fa-plus"></i></button>
+                                <button type="button" class="btn btn-blank" ng-click="editMode=!editMode"><i ng-class="{active:editMode}" class="fa fa-pencil"></i></button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="box-content forum-container">
+
+                            <div ng-repeat="item in items.list"
+                                 class="forum-item"
+                                 ng-class="{editable: editMode}"
+                                 ng-click="openItemForm(item)"
+                                    >
+                                <div class="row">
+                                    <div class="col-xs-4 text-left">
+                                        <input type="checkbox" ng-model="item.active" class="switch-small" ui-switch="{size:'small'}">
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <input type="text" class="full-width form-control" ng-model="item.amount">
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <div class="pull-right">{{item.name}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box-content-footer text-left">
+                                <button class="btn btn-primary" ng-click="updateItems()">עדכן</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

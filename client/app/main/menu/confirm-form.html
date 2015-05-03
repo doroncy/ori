@@ -1,0 +1,23 @@
+<div>
+	<ul class="list-group" ng-if="options.order.items.length > 0">
+		<li class="list-group-item" dir="rtl"
+				ng-repeat="item in options.order.items">
+			<div class="pull-right">
+				{{item.quantity}} x {{item.name}}
+			</div>
+			<div class="pull-left">
+				{{item.itemPrice * item.quantity}}<i class="fa fa-shekel"></i>
+			</div>
+			<div class="clearfix"></div>
+		</li>
+		<li class="list-group-item list-group-item-info" dir="rtl">
+			<div class="pull-right">
+				סך הכל:
+			</div>
+			<div class="pull-left">
+				{{options.order.totalPrice}}<i class="fa fa-shekel"></i>
+			</div>
+			<div class="clearfix"></div>
+		</li>
+	</ul>
+</div>

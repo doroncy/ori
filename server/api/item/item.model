@@ -1,0 +1,24 @@
+'use strict';
+
+var mongoose = require('mongoose'),
+    uniqueValidator = require('mongoose-unique-validator'),
+    Schema = mongoose.Schema;
+
+/**
+ * Item Schema
+ */
+var ItemSchema = new Schema({
+    name:  { type: String, unique: true, required: true },
+    description: String,
+    amount:  { type: Number, default: 0},
+    price: Number,
+    active: { type: Boolean, default: false }
+});
+
+/**
+ * Validations
+ */
+ItemSchema.plugin(uniqueValidator, { message: '{PATH} expected to be unique.' });
+
+
+module.exports = mongoose.model('Item', ItemSchema);
