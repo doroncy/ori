@@ -544,7 +544,7 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
+    }
   });
 
   // Used for delaying livereload until after server has restarted
@@ -662,11 +662,12 @@ module.exports = function (grunt) {
     'usemin'
   ]);
 
+  grunt.registerTask('heroku:production', ['build']);
+
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
     'build'
   ]);
 
-  grunt.registerTask('heroku:production', 'build');
 };
