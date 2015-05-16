@@ -52,7 +52,7 @@
                 .open({
                     title: popUpTitle,
                     message: {
-                        templateUrl: '/app/admin/item-form/item-form.html',
+                        templateUrl: 'app/admin/item-form/item-form.html',
                         options: {
                             item: item,
                             actionFn: function(data) {

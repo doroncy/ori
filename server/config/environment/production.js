@@ -18,7 +18,6 @@ module.exports = {
     uri:    process.env.MONGOLAB_URI ||
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
-            //'mongodb://localhost/ori'
-            'mongodb://admin:doron123@@ds031912.mongolab.com:31912/heroku_app36501542'
+            'mongodb://localhost/ori'
   }
 };

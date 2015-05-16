@@ -51,7 +51,7 @@ angular.module('oriApp')
                 .open({
                     title: "הרשם לאתר",
                     message: {
-                        templateUrl: '/app/main/login/login.html',
+                        templateUrl: 'app/main/login/login.html',
                         showFooter: false,
                         options: {
                         }
@@ -59,10 +59,7 @@ angular.module('oriApp')
                 });
         }
 
-
-
         function showOrderSummary() {
-
             var order = MainService.generateOrder();
 
             if (order.items.length == 0) {
@@ -82,7 +79,7 @@ angular.module('oriApp')
                     .open({
                         title: "סיכום הזמנה",
                         message: {
-                            templateUrl: '/app/main/menu/confirm-form.html',
+                            templateUrl: 'app/main/menu/confirm-form.html',
                             options: {
                                 order:  order,
                                 okCaption: 'הזמן',

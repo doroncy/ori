@@ -27,7 +27,9 @@
     "serve-favicon": "~2.0.1",
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
-    "socketio-jwt": "^2.0.2",
+    "socketio-jwt": "^2.0.2"
+  },
+  "devDependencies": {
     "grunt": "~0.4.4",
     "grunt-autoprefixer": "~0.7.2",
     "grunt-wiredep": "~1.8.0",
