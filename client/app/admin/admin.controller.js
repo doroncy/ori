@@ -14,7 +14,7 @@
         $scope.items = AdminService.items;
         $scope.orders = AdminService.orders;
         $scope.switchOptions = { size: 'small' };
-        $scope.itemForm = "/app/admin/item-form/item-form.html";
+        $scope.itemTypes = ['תבשילים משתנים', 'כריכים', 'סלט'];
         $scope.currUser = Auth.getCurrentUser();
 
         $scope.updateItems = function() {
@@ -25,7 +25,18 @@
 
             $q.all(promises)
                 .then(function() {
-                    console.log('all updated');
+                    ModalService
+                        .open({
+                            title: 'עידכון רשימת המוצרים',
+                            message: {
+                                options: {
+                                    text: 'רשימת המוצרים עודכנה בהצלחה',
+                                    okCaption: 'סגור',
+                                    showCancelBtn: false
+                                }
+                            }
+
+                        });
                 })
                 .catch(function(err){
                     console.log('error', err);
@@ -55,6 +66,7 @@
                         templateUrl: 'app/admin/item-form/item-form.html',
                         options: {
                             item: item,
+                            itemTypes: $scope.itemTypes,
                             actionFn: function(data) {
                                 var defer = $q.defer();
 
@@ -90,6 +102,22 @@
                 : 'delivered';
 
             AdminService.updateOrderStatus(order, newStatus);
+        };
+
+        $scope.addItemQty = function (item) {
+            item.amount += 1;
+        };
+
+        $scope.subtractItemQty = function (item) {
+            if (item.amount > 0) {
+                item.amount -= 1;
+            }
+        };
+
+        $scope.clearAll = function () {
+            _.forEach($scope.items.list, function(item) {
+                item.amount = 0;
+            });
         };
 
     }

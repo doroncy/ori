@@ -15,6 +15,7 @@ var cookieSession = require('cookie-session');
 var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
+//var seed = require('./seed');
 var passport = require('passport');
 
 module.exports = function(app) {
@@ -26,7 +27,7 @@ module.exports = function(app) {
   app.use(compression());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-  app.use(cookieSession({ rolling:true, secret: 'doroncy', cookie: { maxAge: 30 * 60 * 1000 }}));
+  app.use(cookieSession({ rolling:true, secret: 'doroncy', cookie: { maxAge: 30 * 1440 * 60 * 1000 }}));
   app.use(methodOverride());
   app.use(cookieParser());
   app.use(passport.initialize());

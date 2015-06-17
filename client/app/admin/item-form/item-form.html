@@ -7,6 +7,13 @@
 		<label>תיאור קצר</label>
 		<textarea class="form-control" rows="3" ng-model="options.item.description"></textarea>
 	</div>
+	<div class="form-group">
+		<label>קטגוריה</label>
+		<select class="form-control"
+				ng-model="options.item.type"
+				ng-options="type as type for type in options.itemTypes">
+		</select>
+	</div>
 	<div class="row" dir="rtl">
 		<div class="col-sm-4">
 			<div class="checkbox">

@@ -3,10 +3,10 @@
 		<nav class="navbar navbar-static-top" role="navigation">
 			<div class="container">
 				<div class="navbar-headers">
-					<div class="col-xs-2">
+					<div class="col-sm-2 hidden-xs">
 						<img alt="Brand" class="img-responsive pull-left ori-logo-sm" src="/assets/images/ori-logo-blank.png">
 					</div>
-					<div class="col-xs-10">
+					<div class="col-xs-12 col-sm-10">
 						<ul class="nav navbar-top-links navbar-right no-padding">
 							<li>
 								<a ng-click="logout()">
@@ -43,7 +43,7 @@
 							<h5>רשימת המשרדים</h5>
 						</div>
 						<div class="box-content forum-container">
-							<p><i class="fa fa-warning"></i> חשוב מאוד, הפרד כל שם משרד בפסיק</p>
+							<p><i class="fa fa-warning"></i> שים לב, הפרד כל כתובת בפסיק.</p>
 							<textarea ng-model="offices.names" class="form-control" wrap="hard" rows="3"></textarea>
 
 							<div class="box-content-footer text-left">

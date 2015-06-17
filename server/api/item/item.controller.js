@@ -43,6 +43,7 @@ function createItem(req, res) {
     var item = new Item( {
         name: req.body.name,
         description: req.body.description,
+        type: req.body.type,
         amount: req.body.amount,
         price: req.body.price
     });
@@ -66,6 +67,7 @@ function updateItem(req, res) {
         .findOneAndUpdateAsync({_id: req.params.id }, {
             name: req.body.name,
             description: req.body.description,
+            type: req.body.type,
             amount: req.body.amount,
             price: req.body.price,
             active: !!req.body.active

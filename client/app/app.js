@@ -25,9 +25,9 @@ angular.module('oriApp', [
                 templateUrl: 'app/main/menu/menu.html',
                 controller: 'MenuCtrl',
                 resolve: {
-                    MainServiceInit : ['MainService', function(MainService) {
-                        return MainService.fetchItems();
-                    }]
+                    //MainServiceInit : ['MainService', function(MainService) {
+                    //    return MainService.fetchItems();
+                    //}]
                 }
             })
             .state('login', {
@@ -64,7 +64,7 @@ angular.module('oriApp', [
             // Intercept 401s and redirect you to login
             responseError: function(response) {
                 if(response.status === 401) {
-                    $location.path('/login');
+                   // $location.path('/login');
                     // remove any stale tokens
                     $cookieStore.remove('token');
                     return $q.reject(response);

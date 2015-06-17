@@ -2,10 +2,23 @@
 
 
 angular.module('oriApp')
-    .controller('MenuCtrl', function ($scope, UtilsService, MainService, Auth, ModalService, $state) {
-        $scope.items = MainService.items;
-        $scope.currentUser = Auth.getCurrentUser();
+    .controller('MenuCtrl', function ($scope, $anchorScroll, UtilsService, MainService, Auth) {
 
+        $scope.itemsByType = [];
+        $scope.showBackdrop = false;
+
+        //order model
+        $scope.order = {
+            items:[],
+            totalPrice: 0,
+            showOrder: false,
+            showThankyou: false
+        };
+
+        function clearOrder() {
+            $scope.order.items = [];
+            $scope.order.totalPrice = 0;
+        }
 
         $scope.addItemQty = function (item) {
             if (item.amount > 0) {
@@ -15,85 +28,72 @@ angular.module('oriApp')
             }
         };
 
-        $scope.subtractItemQty = function (item) {
-            if (item.orderQty > 0) {
-                item.orderQty = _.isNumber(item.orderQty) && item.orderQty > 0
-                    ? item.orderQty -= 1
-                    : 0;
+        $scope.orderItem = function(item) {
+            var itemInOrder = _.find($scope.order.items, item);
+
+            if (item.amount > 0) {
+                if (!itemInOrder) {
+                    $scope.addItemQty(item);
+                    $scope.order.items.push(item);
+                }
+                $anchorScroll('main-wrap');
+                $scope.order.showOrder = true;
             }
         };
-
-        $scope.submitOrder = UtilsService.controlledHandler(function (done) {
-            var promise;
-
-            if (Auth.isLoggedIn()) {
-                promise = showOrderSummary();
-            } else {
-                promise = login()
-                    .then(showOrderSummary)
-                    .then(function() {
-                        $scope.currentUser = Auth.getCurrentUser();
-                    });
-            }
-
-            promise.finally(function() {
-                done();
-            })
-        });
 
         $scope.logout = function() {
             Auth.logout();
             $scope.currentUser = Auth.getCurrentUser();
         };
 
-        function login() {
-            return ModalService
-                .open({
-                    title: "הרשם לאתר",
-                    message: {
-                        templateUrl: 'app/main/login/login.html',
-                        showFooter: false,
-                        options: {
+        $scope.updateLists = function() {
+            MainService.fetchItems()
+                .then(function() {
+                    clearOrder();
+
+                    $scope.itemsByType = angular.copy([
+                        {
+                            name: "תבשילים משתנים",
+                            list: _.filter(MainService.items.list, {type: "תבשילים משתנים"}),
+                            colorClass: 'light-grey'
+                        },
+                        {
+                            name: "כריכים",
+                            list: _.filter(MainService.items.list, {type: "כריכים"}),
+                            colorClass: 'light-green'
+                        },
+                        {
+                            name: "סלט",
+                            list: _.filter(MainService.items.list, {type: "סלט"}),
+                            colorClass: 'light-brown'
                         }
-                    }
+                    ]);
                 });
-        }
+        };
 
-        function showOrderSummary() {
-            var order = MainService.generateOrder();
-
-            if (order.items.length == 0) {
-                return ModalService
-                    .open({
-                        title: "סיכום הזמנה",
-                        message: {
-                            options: {
-                                text: 'לא נבחרו פריטים',
-                                okCaption: 'סגור',
-                                showCancelBtn: false
-                            }
-                        }
-                    });
+        $scope.$watch(function() {
+            return $scope.order.showOrder || $scope.order.showThankyou;
+        }, function(newValue) {
+            if (newValue) {
+                $scope.showBackdrop = true;
             } else {
-                return ModalService
-                    .open({
-                        title: "סיכום הזמנה",
-                        message: {
-                            templateUrl: 'app/main/menu/confirm-form.html',
-                            options: {
-                                order:  order,
-                                okCaption: 'הזמן',
-                                actionFn: function() {
-                                    return MainService.submitOrder(order);
-                                }
-                            }
-                        }
-                    })
-                    .then(function() {
-                        return MainService.fetchItems();
-                    })
+                $scope.showBackdrop = false;
             }
+        });
 
+        $scope.closeModals = function() {
+            console.log('closeModals');
+            $scope.order.showOrder = false;
+            $scope.order.showThankyou = false;
+        };
 
-        }
+        $scope.isListNotEmpty = function (items) {
+            items = items || {};
+            return !_.isEmpty(items.list);
+        };
+
+        // Init
+        $scope.currentUser = Auth.getCurrentUser();
+        $scope.updateLists();
+
     });

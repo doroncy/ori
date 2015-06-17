@@ -13,6 +13,7 @@ var UserSchema = new Schema({
     default: 'user'
   },
   office: String,
+  officeName: String,
   hashedPassword: String,
   provider: String,
   salt: String
@@ -39,7 +40,8 @@ UserSchema
     return {
       'name': this.name,
       'role': this.role,
-      'office': this.office
+      'office': this.office,
+      'officeName': this.officeName
     };
   });
 

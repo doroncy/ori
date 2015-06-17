@@ -4,42 +4,48 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'bootstrap-sass-official/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
 @import './bourbon/bourbon';
-@import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 
 /**
 * App-wide Variables
 */
 $admin-bg: #f3f3f4;
 
-$text-color: #676a6c;
+$text-color: #484848;
 $border-color: #e7eaec;
 
-/**
- * App-wide Styles
- */
+$light-grey: #C7C8C8;
+$light-green: #A3C5AA;
+$light-brown: #D8CC92;
+$light-yellow: #FBF9BF;
 
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+// Fonts
+@font-face {
+    font-family: Alef-Bold;
+    src: url('../assets/fonts/Alef-Bold.woff') format('woff'), url('../assets/fonts/Alef-Bold.ttf'), url('../assets/fonts/Alef-Bold.eot')
+}
+@font-face {
+    font-family: Alef-Regular;
+    src: url('../assets/fonts/Alef-Regular.woff') format('woff'), url('../assets/fonts/Alef-Regular.ttf'), url('../assets/fonts/Alef-Regular.eot')
 }
 
-html {
-    height: 100%;
+$font-bold: 'Alef-Bold', serif, arial;
+$font-normal: 'Alef-Regular', serif, arial;
+
+.bold {
+    font-family: $font-bold;
 }
 
 body{
     font-size:14px;
-    color: $text-color;
-    width:100%;
     height: 100%;
-    font-family: 'Alef Hebrew', serif, arial;
+    color: $text-color;
+    font-family: $font-normal;
 }
 .page-wrap {
     width:100%;
     height: inherit;
     //height: 100%;
+    //position: relative;
 }
 
 .full-width {
@@ -47,6 +53,12 @@ body{
 }
 .padding-left-sm {
     padding-left:10px;
+}
+.padding-top-md {
+    padding-top:20px;
+}
+.no-padding-right {
+    padding-right: 0;
 }
 .danger-test {
     color: #a94442;
@@ -56,12 +68,31 @@ body{
 .btn {
     background-color: #ccc;
 }
+.btn-primary {
+    background-color: #337ab7 !important;
+}
 
+.light-grey {
+    background-color: $light-grey;
+}
+.light-green {
+    background-color: $light-green;
+}
+.light-brown {
+    background-color: $light-brown;
+}
+.light-yellow {
+    background-color: $light-yellow;
+}
+.well {
+    margin-bottom: 7px;
+}
 // Component styles are injected through grunt
 // injector
 @import '_main/main.scss';
 @import 'admin/admin.scss';
 @import 'admin/users/users.scss';
+@import 'confirm-form/confirm-form.scss';
 @import 'main/login/login.scss';
 @import 'main/main.scss';
 // endinjector

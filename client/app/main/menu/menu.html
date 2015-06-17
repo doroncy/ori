@@ -1,56 +1,50 @@
 <div class="main-wrap">
-	<img class="ori-logo-fixed img-responsive center-block" src="../../../assets/images/ori-logo-blank.png" />
+	<!--Header-->
+	<img class="img-responsive center-block padding-top-md" src="../../../assets/images/ori-menu-logo.png" />
+	<p class="menu-sub-header center-block">להזמנות מראש 054-4471985 | ניתן ליצור קשר במייל orishaikovitz@gmail.com</p>
 
 	<div class="cur-user" ng-if="currentUser.name">
-	היי	{{currentUser.name}} (<a class="link-btn" ng-click="logout()">התנתק</a>)
+		<i class="fa fa-user"></i> היי	{{currentUser.name}} (<a class="link-btn" ng-click="logout()">התנתק</a>)
 	</div>
 
+	<!--Main Content-->
 	<div class="main-content">
 		<div class="col-md-8 col-md-offset-2">
-			<div class="well main-item-wrap">
-				<div class="order-wrap">
-					<h3>מה תזמין היום ?</h3>
-					<p>פה אפשר לרשום עוד דברים וזה...</p>
+			<div ng-repeat="items in itemsByType">
+				<div class="order-wrap well main-item-wrap" ng-if="isListNotEmpty(items)"
+						ng-class="items.colorClass">
+					<h3>{{::items.name}}</h3>
 					<div class="box-content forum-container">
 						<div ng-repeat="item in items.list"
 							 class="forum-item">
 							<div class="row">
-								<div class="col-xs-5">
-									<div class="pull-left item-left-wrap hidden-xs">
+								<div class="col-xs-5 no-padding-right">
+									<div class="pull-left item-left-wrap">
 										<div class="forum-item-lg-title">{{item.amount}}</div>
 										<div class="forum-item-sub-title">נשאר</div>
 									</div>
 
 									<div class="pull-left">
-										<div class="order-item-qty-wrap">
-											<a class="pull-right qty-btn"
-											   ng-class="{disabled: item.amount == 0}"
-											   ng-click="addItemQty(item)"><i class="fa fa-plus"></i></a>
-											<div class="pull-right qty-amount">{{item.orderQty || 0}}</div>
-											<a class="pull-left qty-btn"
-											   ng-class="{disabled: item.orderQty == 0}"
-											   ng-click="subtractItemQty(item)"><i class="fa fa-minus"></i></a>
+										<div class="order-btn" ng-click="orderItem(item);$event.stopPropagation();">
+											הזמן
 										</div>
-										<div class="clearfix"></div>
 									</div>
+									<div class="clearfix"></div>
 								</div>
 								<div class="col-xs-7">
-									<div class="forum-item-title">{{item.name}} ({{item.price}}<i class="fa fa-shekel"></i>)</div>
+									<div class="forum-item-title">{{item.name}} | {{item.price}}<i class="fa fa-shekel"></i></div>
 									<div class="forum-item-sub-title">{{item.description}}</div>
 								</div>
 							</div>
 						</div>
-
-						<div class="order-items-btn-wrap">
-							<button class="btn center-block order-items-btn"
-									ng-disabled="order.items.length == 0"
-									ng-click="submitOrder()"
-									>שלח הזמנה</button>
-						</div>
 					</div>
 				</div>
 			</div>
+
+
 		</div>
 	</div>
 </div>
+<div class="backdrop" ng-if="showBackdrop" ng-click="closeModals()"></div>
+<confirm-form order="order" post-order-fn="updateLists()"></confirm-form>
 

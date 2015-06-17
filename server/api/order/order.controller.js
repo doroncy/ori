@@ -25,7 +25,7 @@ function fetchOrders(req, res) {
         .find()
         .where('date').gte(startDate).lte(endDate)
         .sort('date')
-        .populate({path: 'user', select:'name office email phone'})
+        .populate({path: 'user', select:'name office officeName email phone'})
         .exec()
         .then(function(orders) {
             return res.json(200, orders);

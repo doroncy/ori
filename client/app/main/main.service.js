@@ -25,9 +25,9 @@ angular.module('oriApp')
                 });
         }
 
-        function generateOrder() {
+        function generateOrder(items) {
 
-            var orderItems = _(MainService.items.list)
+            var orderItems = _(items)
                 .filter(function(item) {
                     return item.orderQty > 0;
                 })

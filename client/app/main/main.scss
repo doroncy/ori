@@ -1,13 +1,13 @@
-$main-bg-color: #2AB642;
-$main-darker-10-color: darken($main-bg-color, 10%);
-$main-darker-12-color: darken($main-bg-color, 12%);
+$main-bg-color: #fff;
+$main-darker-10-color: $text-color;
+$main-darker-12-color: #6c6c6c;
 $selected-color: #F50062;
 
 .main-wrap {
   background-color: $main-bg-color;
   width: 100%;
   height: inherit;
-  color:#fff !important;
+  //color:#fff !important;
   padding-bottom: 15px;
 }
 
@@ -40,20 +40,22 @@ $selected-color: #F50062;
 }
 
 .main-content {
- margin-top: 30px;
+  margin-top: 30px;
 }
 
 .main-item-wrap {
-  background-color: $main-darker-10-color;
   border:none;
 
   .forum-item {
-   border-bottom: 1px solid $main-darker-12-color;
+    border-bottom: 1px solid $main-darker-12-color;
     padding: 10px 0;
-    color:#f6f6f6;
 
     .fa-shekel {
       font-size: 0.7em;
+    }
+
+    &:last-child {
+      border-bottom: none;
     }
   }
 
@@ -67,27 +69,22 @@ $selected-color: #F50062;
   .forum-item-sub-title {
     font-size:1.1em;
     line-height: 1;
-    color: #fff;
   }
 
   .forum-item-sub-title {
     font-size:0.9em;
     line-height: 1;
-    color: #ccc;
   }
 }
 .item-left-wrap {
   padding-right: 15px;
-  margin-right: 10px;
-  border-right: 1px solid $main-darker-12-color;
+  //margin-right: 10px;
 }
 .order-wrap {
   h3 {
-    color: #fff;
     margin-top: 0;
-  }
-  .forum-container {
-    padding-top: 20px;
+    font-size:1.1em;
+    text-decoration: underline;
   }
   .item-qty-wrap {
     margin-right: 10px;
@@ -96,7 +93,7 @@ $selected-color: #F50062;
   .order-item-qty-wrap {
 
     .qty-btn {
-     font-size:1.4em;
+      font-size:1.4em;
       padding:10px 10px;
       color:#fff;
       cursor: pointer;
@@ -130,7 +127,7 @@ $selected-color: #F50062;
 }
 
 table th {
- text-align: right;
+  text-align: right;
 }
 
 .active, .hover-active:hover, .hover-active:hover .fa  {
@@ -186,6 +183,84 @@ table th {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.order-btn {
+  background-color: #F7C2D4;
+  font-family: $font-bold;
+  padding:5px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border: none !important;
+  outline: none !important;
+  &:hover {
+    color: #fff;
+  }
+}
+.menu-sub-header {
+  border-bottom: 1px solid #484848;
+  text-align: center;
+  width: 70%;
+  max-width: 600px;
+}
+.half-opacity {
+  opacity: 0.4;
+}
+
+.backdrop {
+  position: absolute;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background-color: #fff;
+  opacity: 0.4;
+  z-index: 5;
+}
+
+
+
+// Usage: @include animation(block-1-animate, $speed, ease-out, infinite)
+@mixin animation ($animation, $duration, $transition, $iteration) {
+  -webkit-animation-name: $animation;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-timing-function: $transition;
+  -webkit-animation-iteration-count: $iteration;
+  -moz-animation-name: $animation;
+  -moz-animation-duration: $duration;
+  -moz-animation-timing-function: $transition;
+  -moz-animation-iteration-count: $iteration;
+  animation-name: $animation;
+  animation-duration: $duration;
+  animation-timing-function: $transition;
+  animation-iteration-count: $iteration;
+}
+.fade-animation {
+   &.enter,  &.ng-enter {
+     @include animation(fadeIn, 1s, ease-out, 1);
+   }
+   &.leave, &.ng-leave {
+     @include animation(fadeOut, 1s, ease-out, 1);
+   }
+ }
+
+.slide-down-animation {
+  &.enter,  &.ng-enter {
+    @include animation(slideInDown, 0.5s, ease-out, 1);
+  }
+  &.leave, &.ng-leave {
+    @include animation(slideOutUp, 0.5s, ease-out, 1);
+  }
+}
+
+.fade-down-animation {
+  &.enter,  &.ng-enter {
+    @include animation(fadeInDown, 0.5s, ease-out, 1);
+  }
+  &.leave, &.ng-leave {
+    @include animation(fadeOutUp, 0.5s, ease-out, 1);
+  }
+}
+
 
 
 @media only screen and (max-width : 480px) {

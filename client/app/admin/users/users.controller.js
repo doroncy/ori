@@ -36,7 +36,7 @@
 
         function showSuccessMsg() {
             $scope.msg = {
-                text: "רשימת המשרדים עודכנה",
+                text: "רשימת הכתובות עודכנה",
                 isError: false,
                 isVisible: true
             };

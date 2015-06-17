@@ -3,6 +3,7 @@
 var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
+var mc = require('./mailchimp');
 var jwt = require('jsonwebtoken');
 
 var validationError = function(res, err) {
@@ -30,6 +31,11 @@ exports.create = function (req, res, next) {
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session);
+
+    mc.addUserToMailchimp(user, function() {
+      console.log('mailchimp updated');
+    });
+
     res.json({ token: token });
   });
 };

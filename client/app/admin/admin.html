@@ -3,10 +3,10 @@
         <nav class="navbar navbar-static-top" role="navigation">
             <div class="container">
                 <div class="navbar-headers">
-                    <div class="col-xs-2">
+                    <div class="col-xs-2 hidden-xs">
                         <img alt="Brand" class="img-responsive pull-left ori-logo-sm" src="/assets/images/ori-logo-blank.png">
                     </div>
-                    <div class="col-xs-10">
+                    <div class="col-xs-12 col-sm-10">
                         <ul class="nav navbar-top-links navbar-right no-padding">
                             <li>
                                 <a class="link-btn" ng-click="logout()">
@@ -44,32 +44,19 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="box-content forum-container">
-                            <div class="table-responsive">
-                                <table class="table table-striped table-hover orders-list">
-                                    <thead>
-                                    <tr>
-                                        <th>משרד</th>
-                                        <th>שם</th>
-                                        <th>הזמנה</th>
-                                        <th>סכום</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr ng-repeat="order in orders.list"
-                                        ng-click="toggleAsDelivered(order)"
-                                        ng-class="{'success': order.status=='delivered'}"
-                                            >
-                                        <td>{{::order.user.office || ''}}</td>
-                                        <td>{{::order.user.name || ''}}<br/>{{::order.user.phone || ''}}</td>
-                                        <td>
-                                            <p class="order-info" ng-repeat="orderItem in order.items">
-                                                {{::orderItem.quantity}} x {{::orderItem.name}}
-                                            </p>
-                                        </td>
-                                        <td>{{::order.totalPrice}}&nbsp;<i class="fa fa-shekel fa-sm"></i></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <div class="list-group">
+                                <a href="#" class="list-group-item ordered-item"
+                                   ng-repeat="order in orders.list"
+                                   ng-click="toggleAsDelivered(order)"
+                                   ng-class="{'active': order.status=='delivered'}">
+                                    <h5 class="list-group-item-heading">{{::order.user.name}} - {{::order.user.phone}}</h5>
+                                    <div class="list-group-item-text">
+                                        <div ng-if="order.user.office">{{::order.user.office || ''}}, {{::order.user.officeName || ''}}</div>
+                                        <p class="order-info" ng-repeat="orderItem in order.items">
+                                            {{::orderItem.quantity}} x {{::orderItem.name}}
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -84,6 +71,7 @@
                             <div class="btn-group pull-left" role="group">
                                 <button type="button" class="btn btn-blank" ng-click="openItemForm()"><i class="fa fa-plus"></i></button>
                                 <button type="button" class="btn btn-blank" ng-click="editMode=!editMode"><i ng-class="{active:editMode}" class="fa fa-pencil"></i></button>
+                                <button type="button" class="btn btn-blank" ng-click="clearAll()"><i class="fa fa-remove"></i></button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -95,13 +83,16 @@
                                  ng-click="openItemForm(item)"
                                     >
                                 <div class="row">
-                                    <div class="col-xs-4 text-left">
-                                        <input type="checkbox" ng-model="item.active" class="switch-small" ui-switch="{size:'small'}">
+                                    <div class="col-xs-3 col-sm-4 text-left switch-small">
+                                        <input type="checkbox" ng-model="item.active" ui-switch="{size:'small'}">
                                     </div>
-                                    <div class="col-xs-3">
-                                        <input type="text" class="full-width form-control" ng-model="item.amount">
+                                    <div class="col-xs-5 col-sm-4 no-padding">
+                                        <div class="fa fa-plus-square pull-left item-amount-btn" ng-click="addItemQty(item)"></div>
+                                        <input type="number" pattern="[0-9]*" class="form-control item-amount-input pull-left" ng-model="item.amount" ng-click="item.amount=null">
+                                        <div class="fa fa-minus-square fa-4 pull-right item-amount-btn" ng-click="subtractItemQty(item)"></div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="col-xs-5">
+                                    <div class="col-xs-4">
                                         <div class="pull-right">{{item.name}}</div>
                                     </div>
                                 </div>

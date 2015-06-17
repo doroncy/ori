@@ -1,71 +1,67 @@
-<div class="row" dir="rtl" ng-controller="LoginCtrl">
+<div class="login-form-wrap" dir="rtl">
 
-	<div ng-if="!signUp">
-
-		<div class="col-sm-6"><h3 class="login-title">הכנס</h3>
-			<form role="form">
-				<div class="form-group">
-					<label>דוא״ל:</label>
-					<input type="email" placeholder="דוא״ל" class="form-control" ng-model="user.email">
-				</div>
-				<div class="form-group">
-					<label>סיסמה:</label>
-					<input type="password" placeholder="סיסמה" class="form-control" ng-model="user.password">
-				</div>
-				<div>
-					<div class="alert"
-						 ng-class="{'alert-success': !msg.isError, 'alert-danger': msg.isError}"
-						 ng-if="msg.isVisible">
-						{{msg.text}}
-					</div>
-
-					<button class="btn order-items-btn pull-left" type="submit" ng-click="login()"><strong>הכנס</strong></button>
-				</div>
-			</form>
-		</div>
-
-		<div class="col-sm-6 b-r-dark"><h4>עוד לא הצטרפת?</h4>
-			<p>אתה יכול ליצור חשבון:</p>
-			<p class="text-center">
-				<a class="hover-active display-block" ng-click="gotoSignUp()"><i class="fa fa-sign-in big-icon"></i></a>
-			</p>
-		</div>
-
+	<div class="sign-up-selectors">
+		<a ng-click="changeMode(false)" ng-class="{active:!signUp}">משתמש קיים</a> |
+		<a ng-click="changeMode(true)" ng-class="{active:signUp}">משתמש חדש</a>
 	</div>
 
-	<div ng-if="signUp" class="col-xs-12">
+	<!--Sign In Section-->
+	<div ng-if="!signUp">
+		<form role="form">
+			<div class="form-group">
+				<input type="email" placeholder="מייל" class="form-control" ng-model="user.email">
+			</div>
+			<div class="form-group">
+				<input type="text" placeholder="נייד" class="form-control" ng-model="user.password">
+				<!--<input type="password" placeholder="סיסמה" class="form-control" ng-model="user.password">-->
+			</div>
 
-		<h3>הרשם לאתר:</h3>
+			<button class="order-btn pull-left" type="submit" ng-click="login()">
+				הכנס
+			</button>
+			<div class="clearfix"></div>
+		</form>
+		<br/>
+		<div>
+			<div class="alert"
+				 ng-class="{'alert-success': !msg.isError, 'alert-danger': msg.isError}"
+				 ng-if="msg.isVisible">
+				{{msg.text}}
+			</div>
+		</div>
+	</div>
 
+	<!--Sign Up Selector-->
+	<div ng-if="signUp">
 		<form class="item-form" role="form" dir="rtl">
 			<div class="form-group">
-				<label>שם</label>
-				<input type="text" class="form-control" ng-model="user.name" />
+				<input type="text" class="form-control" ng-model="user.name" placeholder="שם" />
 			</div>
 			<div class="form-group">
-				<label>דוא״ל</label>
-				<input type="text" class="form-control" ng-model="user.email"/>
+				<input type="email" class="form-control" ng-model="user.email" placeholder="מייל" />
 			</div>
 			<div class="form-group">
-				<label>טלפון</label>
-				<input type="text" class="form-control" ng-model="user.phone"/>
+				<input type="text" class="form-control" ng-model="user.phone" placeholder="נייד" />
+			</div>
+			<!--<div class="form-group">-->
+				<!--<label>סיסמה</label>-->
+				<!--<input type="password" class="form-control" ng-model="user.password"/>-->
+			<!--</div>-->
+
+			<div class="form-group">
+				<input type="text" class="form-control" ng-model="user.officeName" placeholder="שם המשרד" />
 			</div>
 			<div class="form-group">
-				<label>סיסמה</label>
-				<input type="password" class="form-control" ng-model="user.password"/>
-			</div>
-			<div class="form-group">
-				<label>משרד</label>
 				<select class="form-control"
 						ng-model="user.office"
 						ng-options="office as office for office in officesNames">
 				</select>
 			</div>
-			<div>
-				<button class="btn order-items-btn pull-left" type="submit" ng-click="createUser()"><strong>שמור</strong></button>
-				<div class="clearfix"></div>
-			</div>
 
+			<button class="order-btn pull-left" type="submit" ng-click="createUser()">
+				הרשם
+			</button>
+			<div class="clearfix"></div>
 		</form>
 		<br/>
 		<div class="alert"
@@ -73,6 +69,5 @@
 			 ng-if="msg.isVisible">
 			{{msg.text}}
 		</div>
-
 	</div>
 </div>

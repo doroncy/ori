@@ -8,7 +8,7 @@ angular.module('oriApp')
         tl
             .set('#ori-logo', {opacity: 0})
             .to('#ori-logo', 2, {opacity:1})
-            .to('#ori-logo', 0.5, {height:'170px', top:'120px'}, 2)
+            .to('#ori-logo', 1, {opacity:0})
             .call(function() {
                 $state.go('menu');
             });

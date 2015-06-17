@@ -1,0 +1,56 @@
+<div ng-if="order.showOrder" class="confirm-form-wrap slide-down-animation">
+	<table class="table">
+		<thead>
+		<tr>
+			<th colspan="2">פירוט הזמנה</th>
+			<th class="text-align-center">כמות</th>
+			<th class="text-align-left">מחיר</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr ng-repeat="item in order.items">
+			<td class="order-btns">
+				<i class="fa fa-plus-square item-qty-btn" ng-click="addItemQty(item)"></i>
+				<i class="fa fa-minus-square item-qty-btn" ng-click="subtractItemQty(item)"></i>
+			</td>
+			<td>{{::item.name}}</td>
+			<td class="text-align-center">{{item.orderQty}}</td>
+			<td class="text-align-left">{{item.price * item.orderQty}}<i class="fa fa-shekel"></i></td>
+		</tr>
+		</tbody>
+	</table>
+
+	<div class="order-sum">
+		<div class="pull-right">סה״ב הזמנה:</div>
+		<div class="pull-left">
+			{{calcTotalPrice()}}<i class="fa fa-shekel"></i>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-6">
+			<button class="order-btn full-width" ng-click="submitOrder()" ng-disabled="isSubmitOrderDisabled()">
+				שלח את ההזמנה
+			</button>
+		</div>
+		<div class="col-xs-6">
+			<button class="order-btn full-width" ng-click="closeOrderForm()">
+				המשך הזמנה
+			</button>
+		</div>
+	</div>
+
+	<div class="">
+		<login-form post-login-fn="SignInComplete()"
+					ng-if="isSubmitOrderDisabled()"></login-form>
+	</div>
+
+	<div class="notif-msg">התשלום בקבלת המשלוח</div>
+</div>
+
+<div ng-if="order.showThankyou" class="thank-you-wrap fade-down-animation" ng-click="order.showThankyou=false;">
+	<div class="thank-you-title">הזמנתך התקבלה תודה!</div>
+	<img class="" src="../../assets/images/cucumber.png" />
+	<div class="fa fa-remove close-popover-btn"></div>
+</div>
