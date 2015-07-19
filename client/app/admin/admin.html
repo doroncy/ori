@@ -1,114 +1,118 @@
 <div class="admin-page-wrapper">
-    <div class="row border-bottom">
-        <nav class="navbar navbar-static-top" role="navigation">
-            <div class="container">
-                <div class="navbar-headers">
-                    <div class="col-xs-2 hidden-xs">
-                        <img alt="Brand" class="img-responsive pull-left ori-logo-sm" src="/assets/images/ori-logo-blank.png">
-                    </div>
-                    <div class="col-xs-12 col-sm-10">
-                        <ul class="nav navbar-top-links navbar-right no-padding">
-                            <li>
-                                <a class="link-btn" ng-click="logout()">
-                                    <i class="fa fa-sign-out"></i> התנתק
-                                </a>
-                            </li>
-                            <li>
-                                <a ui-sref="admin" class="bg-active"> הדש-בורד</a>
-                            </li>
-                            <li>
-                                <a ui-sref="users">לקוחות</a>
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-
-    <div class="row wrapper border-bottom page-heading">
-        <div class="container">
-            <h2 class="header pull-right">הדש בורד.</h2>
-            <div class="clearfix"></div>
+  <div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-headers">
+          <div class="col-xs-2 hidden-xs">
+            <img alt="Brand" class="img-responsive pull-left ori-logo-sm" src="/assets/images/ori-logo-blank.png">
+          </div>
+          <div class="col-xs-12 col-sm-10">
+            <ul class="nav navbar-top-links navbar-right no-padding">
+              <li>
+                <a class="link-btn" ng-click="logout()">
+                  <i class="fa fa-sign-out"></i> התנתק
+                </a>
+              </li>
+              <li>
+                <a ui-sref="admin" class="bg-active"> הדש-בורד</a>
+              </li>
+              <li>
+                <a ui-sref="users">לקוחות</a>
+              </li>
+              <div class="clearfix"></div>
+            </ul>
+          </div>
         </div>
-    </div>
+      </div>
+    </nav>
+  </div>
 
+  <div class="row wrapper border-bottom page-heading">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="wrapper-content">
-                    <div class="box">
-                        <div class="box-title">
-                            <h5>הזמנות</h5>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="box-content forum-container">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item ordered-item"
-                                   ng-repeat="order in orders.list"
-                                   ng-click="toggleAsDelivered(order)"
-                                   ng-class="{'active': order.status=='delivered'}">
-                                    <h5 class="list-group-item-heading">{{::order.user.name}} - {{::order.user.phone}}</h5>
-                                    <div class="list-group-item-text">
-                                        <div ng-if="order.user.office">{{::order.user.office || ''}}, {{::order.user.officeName || ''}}</div>
-                                        <p class="order-info" ng-repeat="orderItem in order.items">
-                                            {{::orderItem.quantity}} x {{::orderItem.name}}
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="wrapper-content">
-                    <div class="box">
-                        <div class="box-title">
-                            <h5>מוצרים</h5>
-                            <div class="btn-group pull-left" role="group">
-                                <button type="button" class="btn btn-blank" ng-click="openItemForm()"><i class="fa fa-plus"></i></button>
-                                <button type="button" class="btn btn-blank" ng-click="editMode=!editMode"><i ng-class="{active:editMode}" class="fa fa-pencil"></i></button>
-                                <button type="button" class="btn btn-blank" ng-click="clearAll()"><i class="fa fa-remove"></i></button>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="box-content forum-container">
-
-                            <div ng-repeat="item in items.list"
-                                 class="forum-item"
-                                 ng-class="{editable: editMode}"
-                                 ng-click="openItemForm(item)"
-                                    >
-                                <div class="row">
-                                    <div class="col-xs-3 col-sm-4 text-left switch-small">
-                                        <input type="checkbox" ng-model="item.active" ui-switch="{size:'small'}">
-                                    </div>
-                                    <div class="col-xs-5 col-sm-4 no-padding">
-                                        <div class="item-amount-btns-wrap">
-                                            <div class="fa fa-plus-square item-amount-btn col-xs-3 no-padding" ng-click="addItemQty(item)"></div>
-                                            <input type="number" pattern="[0-9]*" class="form-control item-amount-input col-xs-6" ng-model="item.amount" ng-click="item.amount=null">
-                                            <div class="fa fa-minus-square fa-4 item-amount-btn col-xs-3 no-padding" ng-click="subtractItemQty(item)"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <div class="pull-right">{{item.name}}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="box-content-footer text-left">
-                                <button class="btn btn-primary" ng-click="updateItems()">עדכן</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
+      <h2 class="header pull-right">הדש בורד.</h2>
+      <div class="clearfix"></div>
     </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="wrapper-content">
+          <div class="box">
+            <div class="box-title">
+              <h5>הזמנות</h5>
+              <div class="clearfix"></div>
+            </div>
+            <div class="box-content forum-container">
+              <div class="list-group">
+                <a href="#" class="list-group-item ordered-item"
+                   ng-repeat="order in orders.list"
+                   ng-click="toggleAsDelivered(order)"
+                   ng-class="{'active': order.status=='delivered'}">
+                  <h5 class="list-group-item-heading">{{::order.user.name}} - {{::order.user.phone}}</h5>
+                  <div class="list-group-item-text">
+                    <div ng-if="order.user.office">{{::order.user.office || ''}}, {{::order.user.officeName || ''}}</div>
+                    <p class="order-info" ng-repeat="orderItem in order.items">
+                      {{::orderItem.quantity}} x {{::orderItem.name}}
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="wrapper-content">
+          <div class="box">
+            <div class="box-title">
+              <h5>מוצרים</h5>
+              <div class="btn-group pull-left" role="group">
+                <button type="button" class="btn btn-blank" ng-click="openItemForm()"><i class="fa fa-plus"></i></button>
+                <button type="button" class="btn btn-blank" ng-click="editMode=!editMode"><i ng-class="{active:editMode}" class="fa fa-pencil"></i></button>
+                <button type="button" class="btn btn-blank" ng-click="clearAll()"><i class="fa fa-remove"></i></button>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="box-content forum-container">
+
+              <div ng-repeat="item in items.list"
+                   class="forum-item"
+                   ng-class="{editable: editMode}"
+                   ng-click="openItemForm(item)">
+                <div class="row">
+                  <div class="col-xs-3 col-sm-4 text-left switch-small">
+                    <input type="checkbox" ng-model="item.active" ui-switch="{size:'small'}" />
+                  </div>
+                  <div class="col-xs-5 col-sm-4 no-padding">
+                    <div class="item-amount-btns-wrap">
+                      <div class="order-btn no-margin col-xs-5" ng-click="createOrder(item);$event.stopPropagation();">הזמן</div>
+                      <div class="col-xs-7">
+                        <input type="number" class="form-control item-amount-input"
+                               ng-model="item.amount"
+                               ng-focus="console.log('focus')"
+                               ng-click="item.amount='';$event.stopPropagation();"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-4">
+                    <div class="pull-right">{{item.name}}</div>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="box-content-footer text-left">
+                <button class="btn btn-primary" ng-click="updateItems()">עדכן</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 
 </div>

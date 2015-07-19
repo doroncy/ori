@@ -187,6 +187,7 @@ table th {
 .order-btn {
   background-color: #F7C2D4;
   font-family: $font-bold;
+  text-align: center;
   padding:5px 12px;
   margin-top: 10px;
   cursor: pointer;
@@ -194,6 +195,9 @@ table th {
   outline: none !important;
   &:hover {
     color: #fff;
+  }
+  &.no-margin {
+    margin-top: 2px;
   }
 }
 .menu-sub-header {

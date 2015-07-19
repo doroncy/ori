@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('oriApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookies, $q) {
     var currentUser = {};
-    if($cookieStore.get('token')) {
+    if($cookies.get('token')) {
       currentUser = User.get();
     }
 
@@ -24,18 +24,18 @@ angular.module('oriApp')
           email: user.email,
           password: user.password
         }).
-        success(function(data) {
-              console.log("(1) auth/local completed", data);
-          $cookieStore.put('token', data.token);
-          currentUser = User.get();
-          deferred.resolve(data);
-          return cb();
-        }).
-        error(function(err) {
-          this.logout();
-          deferred.reject(err);
-          return cb(err);
-        }.bind(this));
+          success(function(data) {
+            console.log("(1) auth/local completed", data);
+            $cookies.put('token', data.token, {expires: '01/01/2022'});
+            currentUser = User.get();
+            deferred.resolve(data);
+            return cb();
+          }).
+          error(function(err) {
+            this.logout();
+            deferred.reject(err);
+            return cb(err);
+          }.bind(this));
 
         return deferred.promise;
       },
@@ -46,7 +46,7 @@ angular.module('oriApp')
        * @param  {Function}
        */
       logout: function() {
-        $cookieStore.remove('token');
+        $cookies.remove('token');
         currentUser = {};
       },
 
@@ -62,7 +62,7 @@ angular.module('oriApp')
 
         return User.save(user,
           function(data) {
-            $cookieStore.put('token', data.token);
+            $cookies.put('token', data.token, {expires: '01/01/2022'});
             currentUser = User.get();
             return cb(user);
           },
@@ -141,7 +141,7 @@ angular.module('oriApp')
        * Get auth token
        */
       getToken: function() {
-        return $cookieStore.get('token');
+        return $cookies.get('token');
       }
     };
   });

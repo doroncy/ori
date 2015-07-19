@@ -5,16 +5,12 @@
 'use strict';
 
 var order = require('./order.model');
+var socket;
 
-exports.register = function(socket) {
-    order.schema.post('save', function (doc) {
-        onSave(socket, doc);
-    });
+exports.register = function(socketRef) {
+  socket = socketRef;
 };
 
-function onSave(socket, doc, cb) {
-    var orderDoc = doc;
-    doc.populate({path: 'user', select:'name office email phone'}, function() {
-        socket.emit('order:save', orderDoc);
-    });
-}
+exports.sendOrderCreatedMsg = function(msg) {
+  socket.emit('orderCreated', msg);
+};
