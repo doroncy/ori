@@ -2,7 +2,7 @@
 
 
 angular.module('oriApp')
-    .controller('MenuCtrl', function ($scope, $anchorScroll, UtilsService, MainService, Auth) {
+    .controller('MenuCtrl', function ($scope, $location, $anchorScroll, UtilsService, MainService, Auth) {
 
         $scope.itemsByType = [];
         $scope.showBackdrop = false;
@@ -36,7 +36,10 @@ angular.module('oriApp')
                     $scope.addItemQty(item);
                     $scope.order.items.push(item);
                 }
-                $anchorScroll('main-wrap');
+
+                $location.hash('main-wrap');
+                $anchorScroll();
+
                 $scope.order.showOrder = true;
             }
         };
