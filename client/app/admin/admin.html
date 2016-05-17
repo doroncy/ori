@@ -67,7 +67,7 @@
         <div class="wrapper-content">
           <div class="box">
             <div class="box-title">
-              <h5>מוצרים</h5>
+              <h5>מוצרים</h5>1
               <div class="btn-group pull-left" role="group">
                 <button type="button" class="btn btn-blank" ng-click="openItemForm()"><i class="fa fa-plus"></i></button>
                 <button type="button" class="btn btn-blank" ng-click="editMode=!editMode"><i ng-class="{active:editMode}" class="fa fa-pencil"></i></button>
@@ -89,9 +89,7 @@
                     <div class="item-amount-btns-wrap">
                       <div class="order-btn no-margin col-xs-5" ng-click="createOrder(item);$event.stopPropagation();">הזמן</div>
                       <div class="col-xs-7">
-                        <input type="number" class="form-control item-amount-input"
-                               ng-model="item.amount"                            
-                               />
+                        <input type="number" class="form-control item-amount-input" ng-model="item.amount" />
                       </div>
                     </div>
                   </div>

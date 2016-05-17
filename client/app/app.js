@@ -4,7 +4,7 @@ angular.module('oriApp', [
     'ngCookies',
     'ngAnimate',
     'ngResource',
-    'ngTouch',
+    //'ngTouch',
     'btford.socket-io',
     'ui.router',
     'ui.bootstrap',

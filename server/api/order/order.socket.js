@@ -12,5 +12,7 @@ exports.register = function(socketRef) {
 };
 
 exports.sendOrderCreatedMsg = function(msg) {
-  socket.emit('orderCreated', msg);
+  if (!!socket) {
+    socket.emit('orderCreated', msg);
+  }
 };

@@ -87,3 +87,10 @@
   right: 15px;
   color:#fff;
 }
+
+.order-btn.order-btn-continue {
+  background-color: transparent;
+  &:hover {
+    background-color: #F7C2D4;
+  }
+}

@@ -191,8 +191,10 @@ table th {
   padding:5px 12px;
   margin-top: 10px;
   cursor: pointer;
-  border: none !important;
+  border: 1px solid #f7c2d4 !important;
   outline: none !important;
+  -webkit-animation-iteration-count: 3; /* Chrome, Safari, Opera */
+  animation-iteration-count: 3;
   &:hover {
     color: #fff;
   }
