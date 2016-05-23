@@ -54,6 +54,13 @@ angular.module('oriApp')
                             isVisible: true
                         };
                         done();
+                    } else if (_.isEmpty(scope.user.officeName)) {
+                        scope.msg = {
+                          isError: true,
+                          text: 'הכנס שם משרד',
+                          isVisible: true
+                        };
+                        done();
                     } else {
                         scope.user.password= scope.user.phone;
 

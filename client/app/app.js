@@ -15,20 +15,15 @@ angular.module('oriApp', [
         $httpProvider.interceptors.push('authInterceptor');
 
         $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: 'app/main/welcome/welcome.html',
-                controller: 'WelcomeCtrl'
-            })
+            //.state('home', {
+            //    url: '/',
+            //    templateUrl: 'app/main/welcome/welcome.html',
+            //    controller: 'WelcomeCtrl'
+            //})
             .state('menu', {
-                url: '/menu',
+                url: '/',
                 templateUrl: 'app/main/menu/menu.html',
-                controller: 'MenuCtrl',
-                resolve: {
-                    //MainServiceInit : ['MainService', function(MainService) {
-                    //    return MainService.fetchItems();
-                    //}]
-                }
+                controller: 'MenuCtrl'
             })
             .state('login', {
                 url: '/login',

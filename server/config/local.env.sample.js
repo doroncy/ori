@@ -7,7 +7,7 @@
 
 module.exports = {
   DOMAIN:           'http://localhost:9000',
-  SESSION_SECRET:   'ori-secret',
+  SESSION_SECRET:   'dana-secret',
 
   // Control debug level for modules using visionmedia/debug
   DEBUG: ''

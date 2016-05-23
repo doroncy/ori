@@ -5,8 +5,8 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/ori'
+    uri: 'mongodb://localhost/dana'
   },
 
-  seedDB: false
+  seedDB: true
 };
